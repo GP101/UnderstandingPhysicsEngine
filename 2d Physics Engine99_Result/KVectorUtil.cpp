@@ -298,7 +298,7 @@ KVector2 KVectorUtil::GetGeoCenter( const KVector2* vertices, int vertexCount)
 {
 	KVector2 geoCenter = KVector2::zero;
 
-	for (uint32 i1 = 0; i1 < vertexCount; ++i1)
+	for (int i1 = 0; i1 < vertexCount; ++i1)
 	{
 		geoCenter += vertices[i1];
 	}
@@ -378,7 +378,7 @@ void KVectorUtil::DrawPolygon(HDC hdc, std::vector<KVector2>& vertices, COLORREF
 
 	std::vector<POINT> points;
 	points.resize(vertices.size());
-	for (int i=0;i<vertices.size();++i)
+	for (uint32 i=0;i<vertices.size();++i)
 	{
 		KVector2 pos = WorldToScreen(vertices[i]);
 		points[i].x = pos.x;
