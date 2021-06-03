@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="KMath.cpp" />
+    <ClCompile Include="KMatrix2.cpp" />
+    <ClCompile Include="KVector2.cpp" />
+    <ClCompile Include="KVectorUtil.cpp" />
+    <ClCompile Include="LinearAlgebra.cpp" />
+    <ClCompile Include="Collision.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="KCircleShape.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="KManifold.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="KPolygonShape.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="KRigidbody.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="KWorld.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="KBasis2.h" />
+    <ClInclude Include="KMath.h" />
+    <ClInclude Include="KMatrix2.h" />
+    <ClInclude Include="KPhysicsEngine.h" />
+    <ClInclude Include="KScreenCoordinate.h" />
+    <ClInclude Include="KVector2.h" />
+    <ClInclude Include="KVectorUtil.h" />
+    <ClInclude Include="LinearAlgebra.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="Collision.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="KCircleShape.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="KManifold.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="KPolygonShape.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="KRigidbody.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="KShape.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="KWorld.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="LinearAlgebra.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="LinearAlgebra.ico" />
+    <Image Include="small.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Physics">
+      <UniqueIdentifier>{313bcdc3-16e4-4b24-a68f-bcdac3b3d1da}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
