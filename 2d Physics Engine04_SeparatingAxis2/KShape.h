@@ -46,11 +46,11 @@ public:
 		g = Random(0.2f, 0.8f);
 		b = Random(0.2f, 0.8f);
 	}
-	virtual void Initialize(void) = 0;
+	virtual void Initialize() = 0;
 	virtual void ComputeMass(float density) = 0;
 	virtual void SetRotation(float radians) = 0;
-	virtual void Draw(void) const = 0;
-	virtual Type GetType(void) const = 0;
+	virtual void Draw() const = 0;
+	virtual Type GetType() const = 0;
 	void SetPosition(const KVector2& pos_) { position = pos_; }
 
 public:
@@ -58,7 +58,7 @@ public:
 	// For circle shape
 	float radius = 0.0f;
 	// For Polygon shape
-	KMatrix2 u; // Orientation matrix from model to world
+	KMatrix2 rotation; // Orientation matrix from model to world
 	KVector2 position;
 	// Store a color in RGB format
 	float r, g, b;

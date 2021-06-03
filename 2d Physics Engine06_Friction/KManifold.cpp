@@ -34,12 +34,12 @@ KManifold::KManifold(std::shared_ptr<KRigidbody> a, std::shared_ptr<KRigidbody> 
 	sf = 0.0f;
 }
 
-void KManifold::Solve(void)
+void KManifold::Solve()
 {
 	g_collLookup[rigidbodyA->shape->GetType()][rigidbodyB->shape->GetType()](*this, rigidbodyA->shape, rigidbodyB->shape);
 }
 
-void KManifold::Initialize(void)
+void KManifold::Initialize()
 {
 	// Calculate average restitution
 	restitution = __min(rigidbodyA->restitution, rigidbodyB->restitution);
@@ -65,7 +65,7 @@ void KManifold::Initialize(void)
 	}
 }
 
-void KManifold::ApplyImpulse(void)
+void KManifold::ApplyImpulse()
 {
 	// Early out and positional correct if both objects have infinite mass
 	if (IsEqual(rigidbodyA->m_invMass + rigidbodyB->m_invMass, 0))
@@ -138,7 +138,7 @@ void KManifold::ApplyImpulse(void)
 	}
 }
 
-void KManifold::PositionalCorrection(void)
+void KManifold::PositionalCorrection()
 {
 	const float k_slop = 0.05f; // Penetration allowance
 	const float percent = 0.4f; // Penetration percentage to correct
@@ -149,7 +149,7 @@ void KManifold::PositionalCorrection(void)
 	//rigidbodyB->BodyToShape();
 }
 
-void KManifold::InfiniteMassCorrection(void)
+void KManifold::InfiniteMassCorrection()
 {
 	rigidbodyA->velocity.Set(0, 0);
 	rigidbodyB->velocity.Set(0, 0);

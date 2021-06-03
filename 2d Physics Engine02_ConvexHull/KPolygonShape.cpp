@@ -4,7 +4,7 @@
 extern HDC     g_hdc;
 
 
-void KPolygonShape::Initialize(void)
+void KPolygonShape::Initialize()
 {
 }
 
@@ -15,17 +15,17 @@ bool KPolygonShape::IsValid() const
 
 void KPolygonShape::SetRotation(float radians)
 {
-	u.Set(radians);
+	rotation.Set(radians);
 }
 
-void KPolygonShape::Draw(void) const
+void KPolygonShape::Draw() const
 {
 	COLORREF color;
 	color = RGB(r*255.f, g * 255.f, b*255.f);
 	std::vector<KVector2> points;
-	for (uint32 i = 0; i < m_vertexCount; ++i)
+	for (uint32 i = 0; i < m_vertices.size(); ++i)
 	{
-		KVector2 v = body->position + u * m_vertices[i];
+		KVector2 v = body->position + rotation * m_vertices[i];
 		points.push_back(KVector2(v.x, v.y));
 	}
 	KVectorUtil::DrawLine(g_hdc, points, 2, 0, color, 1); // 1: line loop
@@ -39,7 +39,9 @@ KShape::Type KPolygonShape::GetType() const
 // Half width and half height
 void KPolygonShape::SetBox(float hw, float hh)
 {
-	m_vertexCount = 4;
+	//m_vertexCount = 4;
+	m_vertices.resize(4);
+	m_normals.resize(4);
 	m_vertices[0].Set(-hw, -hh);
 	m_vertices[1].Set(hw, -hh);
 	m_vertices[2].Set(hw, hh);
@@ -50,7 +52,7 @@ void KPolygonShape::SetBox(float hw, float hh)
 	m_normals[3].Set(-1.0f, 0.0f);
 }
 
-void KPolygonShape::Set(KVector2 *vertices, uint32 count)
+void KPolygonShape::Set(KVector2* vertices, uint32 count)
 {
 	// No hulls with less than 3 vertices (ensure actual polygon)
 	assert(count > 2 && count <= MaxPolyVertexCount);
@@ -77,6 +79,7 @@ void KPolygonShape::Set(KVector2 *vertices, uint32 count)
 	int32 hull[MaxPolyVertexCount];
 	int32 outCount = 0;
 	int32 indexHull = rightMost;
+	uint32 vertexCount = 0;
 
 	for (;;)
 	{
@@ -118,19 +121,21 @@ void KPolygonShape::Set(KVector2 *vertices, uint32 count)
 		// Conclude algorithm upon wrap-around
 		if (nextHullIndex == rightMost)
 		{
-			m_vertexCount = outCount;
+			vertexCount = outCount;
 			break;
 		}
 	}
 
+	m_vertices.resize(vertexCount);
+	m_normals.resize(vertexCount);
 	// Copy vertices into shape's vertices
-	for (uint32 i = 0; i < m_vertexCount; ++i)
+	for (uint32 i = 0; i < vertexCount; ++i)
 		m_vertices[i] = vertices[hull[i]];
 
 	// Compute face normals
-	for (uint32 i1 = 0; i1 < m_vertexCount; ++i1)
+	for (uint32 i1 = 0; i1 < vertexCount; ++i1)
 	{
-		uint32 i2 = i1 + 1 < m_vertexCount ? i1 + 1 : 0;
+		uint32 i2 = i1 + 1 < vertexCount ? i1 + 1 : 0;
 		KVector2 face = m_vertices[i2] - m_vertices[i1];
 
 		// Ensure no zero-length edges, because that's bad

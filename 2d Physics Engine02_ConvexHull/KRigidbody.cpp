@@ -21,7 +21,7 @@
 
 #include "KPhysicsEngine.h"
 
-KRigidbody::KRigidbody(std::shared_ptr<KShape> shape_, int32 x, int32 y)
+KRigidbody::KRigidbody(std::shared_ptr<KShape> shape_, float x, float y)
 	: shape(shape_)
 {
 	position.Set((float)x, (float)y);

@@ -77,13 +77,13 @@ void CircletoPolygon(KManifold& m, std::shared_ptr<KShape> a, std::shared_ptr<KS
 
 	// Transform circle center to Polygon model space
 	KVector2 center = A->position;
-	center = B->u.Transpose() * (center - B->position);
+	center = B->rotation.Transpose() * (center - B->position);
 
 	// Find edge with minimum penetration
 	// Exact concept as using support points in Polygon vs Polygon
 	float separation = -FLT_MAX;
 	unsigned int faceNormal = 0;
-	for (uint32 i = 0; i < B->m_vertexCount; ++i)
+	for (uint32 i = 0; i < B->m_vertices.size(); ++i)
 	{
 		float s = KVector2::Dot(B->m_normals[i], center - B->m_vertices[i]);
 
@@ -99,14 +99,14 @@ void CircletoPolygon(KManifold& m, std::shared_ptr<KShape> a, std::shared_ptr<KS
 
 	// Grab face's vertices
 	KVector2 v1 = B->m_vertices[faceNormal];
-	uint32 i2 = faceNormal + 1 < B->m_vertexCount ? faceNormal + 1 : 0;
+	uint32 i2 = faceNormal + 1 < B->m_vertices.size() ? faceNormal + 1 : 0;
 	KVector2 v2 = B->m_vertices[i2];
 
 	// Check to see if center is within polygon
 	if (separation < EPSILON)
 	{
 		m.contact_count = 1;
-		m.normal = -(B->u * B->m_normals[faceNormal]);
+		m.normal = -(B->rotation * B->m_normals[faceNormal]);
 		m.contacts[0] = m.normal * A->radius + A->position;
 		m.penetration = A->radius;
 		return;
@@ -125,10 +125,10 @@ void CircletoPolygon(KManifold& m, std::shared_ptr<KShape> a, std::shared_ptr<KS
 
 		m.contact_count = 1;
 		KVector2 n = v1 - center;
-		n = B->u * n;
+		n = B->rotation * n;
 		n.Normalize();
 		m.normal = n;
-		v1 = B->u * v1 + B->position;
+		v1 = B->rotation * v1 + B->position;
 		m.contacts[0] = v1;
 	}
 
@@ -140,9 +140,9 @@ void CircletoPolygon(KManifold& m, std::shared_ptr<KShape> a, std::shared_ptr<KS
 
 		m.contact_count = 1;
 		KVector2 n = v2 - center;
-		v2 = B->u * v2 + B->position;
+		v2 = B->rotation * v2 + B->position;
 		m.contacts[0] = v2;
-		n = B->u * n;
+		n = B->rotation * n;
 		n.Normalize();
 		m.normal = n;
 	}
@@ -154,7 +154,7 @@ void CircletoPolygon(KManifold& m, std::shared_ptr<KShape> a, std::shared_ptr<KS
 		if (KVector2::Dot(center - v1, n) > A->radius)
 			return;
 
-		n = B->u * n;
+		n = B->rotation * n;
 		m.normal = -n;
 		m.contacts[0] = m.normal * A->radius + A->position;
 		m.contact_count = 1;
@@ -172,14 +172,14 @@ float FindAxisLeastPenetration(uint32 *faceIndex, std::shared_ptr<KPolygonShape>
 	float bestDistance = -FLT_MAX;
 	uint32 bestIndex = 0;
 
-	for (uint32 i = 0; i < A->m_vertexCount; ++i)
+	for (uint32 i = 0; i < A->m_vertices.size(); ++i)
 	{
 		// Retrieve a face normal from A
 		KVector2 n = A->m_normals[i];
-		KVector2 nw = A->u * n;
+		KVector2 nw = A->rotation * n;
 
 		// Transform face normal into B's model space
-		KMatrix2 buT = B->u.Transpose();
+		KMatrix2 buT = B->rotation.Transpose();
 		n = buT * nw;
 
 		// Retrieve support point from B along -n
@@ -188,7 +188,7 @@ float FindAxisLeastPenetration(uint32 *faceIndex, std::shared_ptr<KPolygonShape>
 		// Retrieve vertex on face from A, transform into
 		// B's model space
 		KVector2 v = A->m_vertices[i];
-		v = A->u * v + A->body->position;
+		v = A->rotation * v + A->body->position;
 		v -= B->body->position;
 		v = buT * v;
 
@@ -212,13 +212,13 @@ void FindIncidentFace(KVector2 *v, std::shared_ptr<KPolygonShape> RefPoly, std::
 	KVector2 referenceNormal = RefPoly->m_normals[referenceIndex];
 
 	// Calculate normal in incident's frame of reference
-	referenceNormal = RefPoly->u * referenceNormal; // To world space
-	referenceNormal = IncPoly->u.Transpose() * referenceNormal; // To incident's model space
+	referenceNormal = RefPoly->rotation * referenceNormal; // To world space
+	referenceNormal = IncPoly->rotation.Transpose() * referenceNormal; // To incident's model space
 
 	// Find most anti-normal face on incident polygon
 	int32 incidentFace = 0;
 	float minDot = FLT_MAX;
-	for (uint32 i = 0; i < IncPoly->m_vertexCount; ++i)
+	for (uint32 i = 0; i < IncPoly->m_vertices.size(); ++i)
 	{
 		float dot = KVector2::Dot(referenceNormal, IncPoly->m_normals[i]);
 		if (dot < minDot)
@@ -229,9 +229,9 @@ void FindIncidentFace(KVector2 *v, std::shared_ptr<KPolygonShape> RefPoly, std::
 	}
 
 	// Assign face vertices for incidentFace
-	v[0] = IncPoly->u * IncPoly->m_vertices[incidentFace] + IncPoly->body->position;
-	incidentFace = incidentFace + 1 >= (int32)IncPoly->m_vertexCount ? 0 : incidentFace + 1;
-	v[1] = IncPoly->u * IncPoly->m_vertices[incidentFace] + IncPoly->body->position;
+	v[0] = IncPoly->rotation * IncPoly->m_vertices[incidentFace] + IncPoly->body->position;
+	incidentFace = incidentFace + 1 >= (int32)IncPoly->m_vertices.size() ? 0 : incidentFace + 1;
+	v[1] = IncPoly->rotation * IncPoly->m_vertices[incidentFace] + IncPoly->body->position;
 }
 
 int32 Clip(KVector2 n, float c, KVector2 *face)
@@ -335,12 +335,12 @@ void PolygontoPolygon(KManifold& m, std::shared_ptr<KShape> a, std::shared_ptr<K
 
 	// Setup reference face vertices
 	KVector2 v1 = RefPoly->m_vertices[referenceIndex];
-	referenceIndex = referenceIndex + 1 == RefPoly->m_vertexCount ? 0 : referenceIndex + 1;
+	referenceIndex = referenceIndex + 1 == RefPoly->m_vertices.size() ? 0 : referenceIndex + 1;
 	KVector2 v2 = RefPoly->m_vertices[referenceIndex];
 
 	// Transform vertices to world space
-	v1 = RefPoly->u * v1 + RefPoly->body->position;
-	v2 = RefPoly->u * v2 + RefPoly->body->position;
+	v1 = RefPoly->rotation * v1 + RefPoly->body->position;
+	v2 = RefPoly->rotation * v2 + RefPoly->body->position;
 
 	// Calculate reference face side normal in world space
 	KVector2 sidePlaneNormal = (v2 - v1);

@@ -4,7 +4,6 @@
 #include <cstdlib> // exit
 #include <cfloat>  // FLT_MAX
 #include <vector>
-#include "KTime.h"
 #include "KRigidbody.h"
 #include "KShape.h"
 #include "Collision.h"

@@ -7,7 +7,7 @@ KCircleShape::KCircleShape(float r)
 	radius = r;
 }
 
-void KCircleShape::Initialize(void)
+void KCircleShape::Initialize()
 {
 	ComputeMass(1.0f);
 }
@@ -42,7 +42,7 @@ void KCircleShape::Draw() const
 		p += body->position;
 		points.push_back(KVector2(p.x, p.y));
 	}
-	KVectorUtil::DrawLine(g_hdc, points, 2, 0, color, 1);
+	KVectorUtil::DrawLine(g_hdc, points, 4, 0, color, 1);
 
 	// Render line within circle so orientation is visible
 	KVector2 r(0, 1.0f);

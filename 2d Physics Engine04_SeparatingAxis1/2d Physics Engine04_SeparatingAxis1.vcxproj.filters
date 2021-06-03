@@ -3,7 +3,6 @@
   <ItemGroup>
     <ClCompile Include="KMath.cpp" />
     <ClCompile Include="KMatrix2.cpp" />
-    <ClCompile Include="KTime.cpp" />
     <ClCompile Include="KVector2.cpp" />
     <ClCompile Include="KVectorUtil.cpp" />
     <ClCompile Include="LinearAlgebra.cpp" />
@@ -31,7 +30,6 @@
     <ClInclude Include="KMath.h" />
     <ClInclude Include="KMatrix2.h" />
     <ClInclude Include="KScreenCoordinate.h" />
-    <ClInclude Include="KTime.h" />
     <ClInclude Include="KVector2.h" />
     <ClInclude Include="KVectorUtil.h" />
     <ClInclude Include="LinearAlgebra.h" />

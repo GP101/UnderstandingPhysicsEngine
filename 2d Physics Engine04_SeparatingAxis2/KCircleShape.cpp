@@ -7,7 +7,7 @@ KCircleShape::KCircleShape(float r)
 	radius = r;
 }
 
-void KCircleShape::Initialize(void)
+void KCircleShape::Initialize()
 {
 	ComputeMass(1.0f);
 }

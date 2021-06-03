@@ -30,7 +30,7 @@ struct KShape;
 struct KRigidbody;
 struct KRigidbody : public std::enable_shared_from_this<KRigidbody>
 {
-	KRigidbody(std::shared_ptr<KShape> shape_, int32 x, int32 y);
+	KRigidbody(std::shared_ptr<KShape> shape_, float x, float y);
 	void SetRotation(float radians);
 	void BodyToShape();
 

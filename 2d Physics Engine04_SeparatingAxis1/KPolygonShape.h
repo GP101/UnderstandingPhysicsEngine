@@ -23,9 +23,8 @@ struct KPolygonShape : public KShape
 	// The extreme point along a direction within a polygon
 	KVector2 GetSupportPoint(const KVector2& dir);
 
-	uint32 m_vertexCount = 0;
-	KVector2 m_vertices[MaxPolyVertexCount];
-	KVector2 m_normals[MaxPolyVertexCount];
+	std::vector<KVector2> m_vertices;
+	std::vector<KVector2> m_normals;
 };
 
 #endif // _KPOLYGONSHAPE_H_

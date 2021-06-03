@@ -21,7 +21,7 @@
 
 #include "KPhysicsEngine.h"
 
-KRigidbody::KRigidbody(std::shared_ptr<KShape> shape_, int32 x, int32 y)
+KRigidbody::KRigidbody(std::shared_ptr<KShape> shape_, float x, float y)
 	: shape(shape_)
 {
 	//shape->body = shared_from_this();// this;
@@ -57,6 +57,11 @@ void KRigidbody::SetStatic(void)
 	m_invI = 0.0f;
 	m_mass = 0.0f;
 	m_invMass = 0.0f;
+}
+
+bool KRigidbody::IsStatic() const
+{
+	return m_I == 0.0f && m_mass == 0.0f;
 }
 
 void KRigidbody::SetRotation(float radians)

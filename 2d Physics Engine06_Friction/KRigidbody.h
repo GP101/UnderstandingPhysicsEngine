@@ -30,10 +30,11 @@ struct KShape;
 struct KRigidbody;
 struct KRigidbody : public std::enable_shared_from_this<KRigidbody>
 {
-	KRigidbody(std::shared_ptr<KShape> shape_, int32 x, int32 y);
+	KRigidbody(std::shared_ptr<KShape> shape_, float x, float y);
 	void ApplyForce(const KVector2& f);
 	void ApplyImpulse(const KVector2& impulse, const KVector2& contactVector);
 	void SetStatic();
+	bool IsStatic() const;
 	void SetRotation(float radians);
 	void BodyToShape();
 
