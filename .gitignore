@@ -25,3 +25,14 @@
 /Debug
 /.vs
 /2d Physics Engine99_Result/Release
+/Release
+/Box2D_Lite_WithoutJoints/tmp
+/Box2D_Lite_Wrapper/tmp
+/Box2D_Lite_WithoutJoints/bin/*.idb
+/Box2D_Lite_WithoutJoints/bin/*.ilk
+/Box2D_Lite_WithoutJoints/bin/*.pdb
+/Box2D_Lite_Wrapper/bin/*.idb
+/Box2D_Lite_Wrapper/bin/*.ilk
+/Box2D_Lite_Wrapper/bin/*.pdb
+/Box2D_Lite_WithoutJoints/bin/*.tmp
+/Box2D_Lite_Wrapper/bin/*.tmp

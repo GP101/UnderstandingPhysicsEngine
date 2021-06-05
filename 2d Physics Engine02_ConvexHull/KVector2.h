@@ -13,12 +13,14 @@ public:
     static KVector2 right;
     static KVector2 up;
 
+	static bool IsZero(float a);
     static KVector2 Lerp(const KVector2& begin, const KVector2& end, float ratio);
     static float Dot(const KVector2& left, const KVector2& right);
     static float DistSquared(const KVector2& a, const KVector2& b);
     static float Dist(const KVector2& a, const KVector2& b);
 	static float Determinant(const KVector2&a, const KVector2 &b);
 	static bool IsCCW(const KVector2&a, const KVector2 &b);
+	static int GetDirection(const KVector2& a, const KVector2& b, const KVector2& c);
 	static KVector2 Min(const KVector2& a, const KVector2& b);
 	static KVector2 Max(const KVector2& a, const KVector2& b);
 	static KVector2 Cross(const KVector2& v, float a);

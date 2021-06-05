@@ -1,7 +1,7 @@
 #include "KPolygonShape.h"
 #include "KMath.h"
-
-extern HDC     g_hdc;
+#include <algorithm>
+#include <stack>
 
 
 void KPolygonShape::Initialize()
@@ -61,22 +61,9 @@ void KPolygonShape::SetRotation(float radians)
 	rotation.Set(radians);
 }
 
-void KPolygonShape::Draw() const
-{
-	COLORREF color;
-	color = RGB(r*255.f, g * 255.f, b*255.f);
-	std::vector<KVector2> points;
-	for (uint32 i = 0; i < m_vertices.size(); ++i)
-	{
-		KVector2 v = body->position + rotation * m_vertices[i];
-		points.push_back(KVector2(v.x, v.y));
-	}
-	KVectorUtil::DrawLine(g_hdc, points, 2, 0, color, 1); // 1: line loop
-}
-
 KShape::Type KPolygonShape::GetType() const
 {
-	return ePoly;
+	return Type::ePoly;
 }
 
 // Half width and half height
@@ -97,88 +84,15 @@ void KPolygonShape::SetBox(float hw, float hh)
 
 void KPolygonShape::Set(KVector2* vertices, uint32 count)
 {
-	// No hulls with less than 3 vertices (ensure actual polygon)
-	assert(count > 2 && count <= MaxPolyVertexCount);
-	count = __min((int32)count, MaxPolyVertexCount);
+	FindConvexHull(vertices, count, m_vertices);
 
-	// Find the right most point on the hull
-	int32 rightMost = 0;
-	float highestXCoord = vertices[0].x;
-	for (uint32 i = 1; i < count; ++i)
-	{
-		float x = vertices[i].x;
-		if (x > highestXCoord)
-		{
-			highestXCoord = x;
-			rightMost = i;
-		}
-
-		// If matching x then take farthest negative y
-		else if (x == highestXCoord)
-			if (vertices[i].y < vertices[rightMost].y)
-				rightMost = i;
-	}
-
-	int32 hull[MaxPolyVertexCount];
-	int32 outCount = 0;
-	int32 indexHull = rightMost;
-	uint32 vertexCount = 0;
-
-	for (;;)
-	{
-		hull[outCount] = indexHull;
-
-		// Search for next index that wraps around the hull
-		// by computing cross products to find the most counter-clockwise
-		// vertex in the set, given the previos hull index
-		int32 nextHullIndex = 0;
-		for (int32 i = 1; i < (int32)count; ++i)
-		{
-			// Skip if same coordinate as we need three unique
-			// points in the set to perform a cross product
-			if (nextHullIndex == indexHull)
-			{
-				nextHullIndex = i;
-				continue;
-			}
-
-			// Cross every set of three unique vertices
-			// Record each counter clockwise third vertex and add
-			// to the output hull
-			// See : http://www.oocities.org/pcgpe/math2d.html
-			KVector2 e1 = vertices[nextHullIndex] - vertices[hull[outCount]];
-			KVector2 e2 = vertices[i] - vertices[hull[outCount]];
-			float c = KVector2::Cross(e1, e2);
-			if (c < 0.0f)
-				nextHullIndex = i;
-
-			// Cross product is zero then e vectors are on same line
-			// therefor want to record vertex farthest along that line
-			if (c == 0.0f && e2.LengthSquared() > e1.LengthSquared())
-				nextHullIndex = i;
-		}
-
-		++outCount;
-		indexHull = nextHullIndex;
-
-		// Conclude algorithm upon wrap-around
-		if (nextHullIndex == rightMost)
-		{
-			vertexCount = outCount;
-			break;
-		}
-	}
-
-	m_vertices.resize(vertexCount);
+	const int vertexCount = m_vertices.size();
 	m_normals.resize(vertexCount);
-	// Copy vertices into shape's vertices
-	for (uint32 i = 0; i < vertexCount; ++i)
-		m_vertices[i] = vertices[hull[i]];
 
 	// Compute face normals
-	for (uint32 i1 = 0; i1 < vertexCount; ++i1)
+	for (int i1 = 0; i1 < vertexCount; ++i1)
 	{
-		uint32 i2 = i1 + 1 < vertexCount ? i1 + 1 : 0;
+		int i2 = i1 + 1 < vertexCount ? i1 + 1 : 0;
 		KVector2 face = m_vertices[i2] - m_vertices[i1];
 
 		// Ensure no zero-length edges, because that's bad
@@ -187,6 +101,72 @@ void KPolygonShape::Set(KVector2* vertices, uint32 count)
 		// Calculate normal with 2D cross product between vector and scalar
 		m_normals[i1] = KVector2(face.y, -face.x);
 		m_normals[i1].Normalize();
+	}
+}
+
+static KVector2 p0;
+
+void KPolygonShape::FindConvexHull(KVector2 points[], int n, std::vector<KVector2>& convexHullPoints)
+{
+	auto SecondTop = [](std::stack<KVector2>& stk)
+	{
+		KVector2 tempPoint = stk.top();
+		stk.pop();
+		KVector2 res = stk.top();    //get the second top element
+		stk.push(tempPoint);      //push previous top again
+		return res;
+	};
+	auto compare = [](const void* point1, const void* point2) ->int
+	{
+		KVector2* p1 = (KVector2*)point1;
+		KVector2* p2 = (KVector2*)point2;
+		int dir = KVector2::GetDirection(p0, *p1, *p2);
+		if (dir == 0)
+			return (KVector2::DistSquared(p0, *p2) >= KVector2::DistSquared(p0, *p1)) ? -1 : 1;
+		return (dir == 2) ? -1 : 1;
+	};
+
+	float minY = points[0].y;
+	int min = 0;
+	for (int i = 1; i < n; i++) {
+		float y = points[i].y;
+		// find bottom left most point
+		if ((y < minY) || (minY == y) && points[i].x < points[min].x) {
+			minY = points[i].y;
+			min = i;
+		}
+	}
+	std::swap(points[0], points[min]); // swap min point to 0th location
+	p0 = points[0];
+	std::qsort(&points[1], n - 1, sizeof(KVector2), compare);
+	int arrSize = 1; // used to locate items in modified array
+	for (int i = 1; i < n; i++) {
+		// when the angle of ith and (i+1)th elements are same, remove points
+		while (i < n - 1 && KVector2::GetDirection(p0, points[i], points[i + 1]) == 0)
+			i++;
+		points[arrSize] = points[i];
+		arrSize++;
+	}
+	if (arrSize < 3)
+		return; // there must be at least 3 points, return empty list.
+
+	// create a stack and add first three points in the stack
+	std::stack<KVector2> stk;
+	stk.push(points[0]);
+	stk.push(points[1]);
+	stk.push(points[2]);
+	for (int i = 3; i < arrSize; i++) {    //for remaining vertices
+		while (KVector2::GetDirection(SecondTop(stk), stk.top(), points[i]) != 2)
+			stk.pop(); // when top, second top and ith point are not making left turn, remove point
+		stk.push(points[i]);
+	}
+	const int numPoints = stk.size();
+	int index = numPoints - 1;
+	convexHullPoints.resize( numPoints );
+	while (!stk.empty()) {
+		convexHullPoints[index] = stk.top(); //add points from stack
+		stk.pop();
+		index -= 1;
 	}
 }
 

@@ -27,7 +27,7 @@ namespace KVectorUtil
         , int lineWidth = 1, int penStyle = PS_SOLID, COLORREF color = RGB(0, 0, 0));
     float LengthSquared(const KVector2& a, const KVector2& b);
     float Length(const KVector2& a, const KVector2& b);
-	float PointLinesegmentDistance(KVector2 p, KVector2 v, KVector2 w);
+	float PointLinesegmentDistance(KVector2 p, KVector2 v0, KVector2 v1);
 	float PointLineDistance(KVector2 p, KVector2 v0, KVector2 v1);
 	/// check whether point p is in the convex polygon of 'points'
 	bool IsPointInPolygon(const KVector2& p, const std::vector<KVector2>& points);
@@ -37,7 +37,15 @@ namespace KVectorUtil
 	int LineSegmentPolygonIntersection(const KVector2& p0, const KVector2& p1, const std::vector<KVector2>& points);
     KVector2 GetGeoCenter(const KVector2* points, int vertexCount);
     KVector2 GetGeoCenter(const std::vector<KVector2>& points);
-	void Clip(const std::vector<KVector2>& points, const KVector2 p0, const KVector2 p1
-		, std::vector<KVector2>& new_points);
+	void Clip(const std::vector<KVector2>& inPoints, const KVector2 p0, const KVector2 p1
+		, std::vector<KVector2>& outPoints);
 	void DrawPolygon(HDC hdc, std::vector<KVector2>& points, COLORREF color);
+	/// <summary>
+	/// check whether vector bc is rotated CCW or CW with respect to ab.
+	/// </summary>
+	/// <param name="a"> first point </param>
+	/// <param name="b"> second point </param>
+	/// <param name="c"> thrid point </param>
+	/// <returns> 0: colinear, 1: Clockwise, 2: Counter-Clockwise </returns>
+	int GetDirection(const KVector2& a, const KVector2& b, const KVector2& c);
 }

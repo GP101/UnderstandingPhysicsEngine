@@ -392,3 +392,14 @@ void KVectorUtil::DrawPolygon(HDC hdc, std::vector<KVector2>& vertices, COLORREF
 	SelectPen(hdc, hOldPen);
 	DeleteObject(hPen);
 }
+
+int KVectorUtil::GetDirection(const KVector2& a, const KVector2& b, const KVector2& c)
+{
+	float val = (b.y - a.y) * (c.x - b.x) - (b.x - a.x) * (c.y - b.y);
+	if (KVector2::IsZero(val))
+		return 0;    //colinear
+	else if (val > 0)
+		return 1;    //clockwise direction
+
+	return 2; //counter-clockwise direction
+}

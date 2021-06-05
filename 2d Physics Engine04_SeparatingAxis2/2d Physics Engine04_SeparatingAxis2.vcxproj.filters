@@ -24,6 +24,7 @@
     <ClCompile Include="KWorld.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
+    <ClCompile Include="KShapeUtil.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KBasis2.h" />
@@ -35,7 +36,6 @@
     <ClInclude Include="KVectorUtil.h" />
     <ClInclude Include="LinearAlgebra.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="KShape.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Collision.h">
       <Filter>Physics</Filter>
@@ -55,6 +55,10 @@
     <ClInclude Include="KWorld.h">
       <Filter>Physics</Filter>
     </ClInclude>
+    <ClInclude Include="KShape.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="KShapeUtil.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="LinearAlgebra.rc" />

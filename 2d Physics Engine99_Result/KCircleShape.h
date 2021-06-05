@@ -13,7 +13,6 @@ struct KCircleShape : public KShape
 	void Initialize();
 	void ComputeMass(float density);
 	void SetRotation(float radians);
-	void Draw() const;
 	KShape::Type GetType() const;
 };
 

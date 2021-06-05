@@ -10,6 +10,11 @@ KVector2 KVector2::right = KVector2(1, 0);
 KVector2 KVector2::up = KVector2(0, 1);
 
 
+bool KVector2::IsZero(float a)
+{
+	return std::abs(a) <= 0.00001f;
+}
+
 KVector2 KVector2::Lerp(const KVector2& begin, const KVector2& end, float ratio_)
 {
     float ratio = __min(1, __max(0, ratio_));
@@ -43,6 +48,17 @@ float KVector2::Determinant(const KVector2&a, const KVector2 &b)
 bool KVector2::IsCCW(const KVector2&a, const KVector2 &b)
 {
 	return KVector2::Determinant(a, b) > 0.0f;
+}
+
+int KVector2::GetDirection(const KVector2& a, const KVector2& b, const KVector2& c)
+{
+	float val = (b.y - a.y) * (c.x - b.x) - (b.x - a.x) * (c.y - b.y);
+	if (IsZero(val))
+		return 0;    //colinear
+	else if (val > 0)
+		return 1;    //clockwise direction
+
+	return 2; //counter-clockwise direction
 }
 
 KVector2 KVector2::Min(const KVector2& a, const KVector2& b)

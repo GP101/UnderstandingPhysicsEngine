@@ -6,20 +6,17 @@
 #include "KMath.h"
 #include "KVectorUtil.h"
 
-#define MaxPolyVertexCount 64
-
-
 struct KPolygonShape : public KShape
 {
 	void Initialize();
 	bool IsValid() const;
 	void ComputeMass(float density);
 	void SetRotation(float radians);
-	void Draw() const;
 	KShape::Type GetType() const;
 	// Half width and half height
 	void SetBox(float hw, float hh);
-	void Set(KVector2 *vertices, uint32 count);
+	void Set(KVector2* vertices, uint32 count);
+	void FindConvexHull(KVector2 points[], int n, std::vector<KVector2>& convexHullPoints);
 	// The extreme point along a direction within a polygon
 	KVector2 GetSupportPoint(const KVector2& dir);
 

@@ -21,7 +21,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2d Physics Engine99_FinalRe
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Box2D_Lite_WithoutJoints", "Box2D_Lite_WithoutJoints\build\Box2D_Lite_WithoutJoints.vcxproj", "{1064D4EB-7CD2-1449-956F-ADFA2AAEEA6F}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Box2DWrapper", "Box2D_Lite_Wrapper\build\Box2DWrapper.vcxproj", "{47F79F6B-9565-40CB-BC63-ED03913C51A5}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Box2D_Lite", "Box2D_Lite_Wrapper\build\Box2DWrapper.vcxproj", "{47F79F6B-9565-40CB-BC63-ED03913C51A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,12 +87,10 @@ Global
 		{89F1DF69-07D4-49DC-BED1-77E4B7A0B216}.Release|x64.Build.0 = Release|x64
 		{89F1DF69-07D4-49DC-BED1-77E4B7A0B216}.Release|x86.ActiveCfg = Release|Win32
 		{89F1DF69-07D4-49DC-BED1-77E4B7A0B216}.Release|x86.Build.0 = Release|Win32
-		{C587086A-AC0E-4C0F-8F22-BEA6F355E958}.Debug|x64.ActiveCfg = Debug|x64
-		{C587086A-AC0E-4C0F-8F22-BEA6F355E958}.Debug|x64.Build.0 = Debug|x64
+		{C587086A-AC0E-4C0F-8F22-BEA6F355E958}.Debug|x64.ActiveCfg = Debug|Win32
 		{C587086A-AC0E-4C0F-8F22-BEA6F355E958}.Debug|x86.ActiveCfg = Debug|Win32
 		{C587086A-AC0E-4C0F-8F22-BEA6F355E958}.Debug|x86.Build.0 = Debug|Win32
-		{C587086A-AC0E-4C0F-8F22-BEA6F355E958}.Release|x64.ActiveCfg = Release|x64
-		{C587086A-AC0E-4C0F-8F22-BEA6F355E958}.Release|x64.Build.0 = Release|x64
+		{C587086A-AC0E-4C0F-8F22-BEA6F355E958}.Release|x64.ActiveCfg = Release|Win32
 		{C587086A-AC0E-4C0F-8F22-BEA6F355E958}.Release|x86.ActiveCfg = Release|Win32
 		{C587086A-AC0E-4C0F-8F22-BEA6F355E958}.Release|x86.Build.0 = Release|Win32
 		{1064D4EB-7CD2-1449-956F-ADFA2AAEEA6F}.Debug|x64.ActiveCfg = Debug|Win32

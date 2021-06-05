@@ -24,6 +24,7 @@
     <ClCompile Include="KWorld.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
+    <ClCompile Include="KShapeUtil.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KBasis2.h" />
@@ -59,6 +60,7 @@
     <ClInclude Include="KShape.h">
       <Filter>Physics</Filter>
     </ClInclude>
+    <ClInclude Include="KShapeUtil.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="LinearAlgebra.rc" />

@@ -152,6 +152,7 @@
     <ClInclude Include="KPhysicsEngine.h" />
     <ClInclude Include="KRigidbody.h" />
     <ClInclude Include="KScreenCoordinate.h" />
+    <ClInclude Include="KShapeUtil.h" />
     <ClInclude Include="KVector2.h" />
     <ClInclude Include="KVectorUtil.h" />
     <ClInclude Include="KWorld.h" />
@@ -168,6 +169,7 @@
     <ClCompile Include="KMath.cpp" />
     <ClCompile Include="KMatrix2.cpp" />
     <ClCompile Include="KRigidbody.cpp" />
+    <ClCompile Include="KShapeUtil.cpp" />
     <ClCompile Include="KVector2.cpp" />
     <ClCompile Include="KVectorUtil.cpp" />
     <ClCompile Include="KWorld.cpp" />
