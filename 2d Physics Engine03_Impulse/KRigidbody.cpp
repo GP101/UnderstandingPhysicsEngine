@@ -31,13 +31,8 @@ KRigidbody::KRigidbody(std::shared_ptr<KShape> shape_, float x, float y)
 	torque = 0;
 	rotation = Random(-PI, PI);
 	force.Set(0, 0);
-	staticFriction = 0.5f;
-	dynamicFriction = 0.3f;
-	restitution = 0.2f;
-	//shape->Initialize();
 	m_linearDamping = 0.1f;
 	m_angularDamping = 0.1f;
-	m_gravityScale = 1.0f;
 }
 
 void KRigidbody::ApplyForce(const KVector2& f)

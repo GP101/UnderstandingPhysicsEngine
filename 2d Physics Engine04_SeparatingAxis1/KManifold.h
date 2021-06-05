@@ -29,8 +29,8 @@ struct KRigidbody;
 struct KManifold// : public std::enable_shared_from_this<KManifold>
 {
 	KManifold(std::shared_ptr<KRigidbody> rigidA, std::shared_ptr<KRigidbody> rigidB);
-	void Solve(void);                 // Generate contact information
-	void Initialize(void);            // Precalculations for impulse solving
+	void Solve();                 // Generate contact information
+	void Initialize();            // Precalculations for impulse solving
 
 	std::shared_ptr<KRigidbody> rigidbodyA;
 	std::shared_ptr<KRigidbody> rigidbodyB;

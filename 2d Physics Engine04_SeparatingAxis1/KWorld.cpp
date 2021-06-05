@@ -53,11 +53,11 @@ void IntegrateVelocity(std::shared_ptr<KRigidbody> b, float dt)
 
 // constructor
 KWorld::KWorld(float dt, uint32 iterations) 
-	: m_dt(dt), m_iterations(iterations)
+	: m_dt(dt)
 {
 }
 
-void KWorld::Step(void)
+void KWorld::Step()
 {
 	// Integrate forces
 	for (uint32 i = 0; i < m_bodies.size(); ++i)

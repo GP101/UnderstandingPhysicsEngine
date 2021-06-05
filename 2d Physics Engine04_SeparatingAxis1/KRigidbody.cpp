@@ -34,10 +34,8 @@ KRigidbody::KRigidbody(std::shared_ptr<KShape> shape_, float x, float y)
 	staticFriction = 0.5f;
 	dynamicFriction = 0.3f;
 	restitution = 0.2f;
-	//shape->Initialize();
 	m_linearDamping = 0.1f;
 	m_angularDamping = 0.1f;
-	m_gravityScale = 1.0f;
 }
 
 void KRigidbody::ApplyForce(const KVector2& f)
@@ -51,7 +49,7 @@ void KRigidbody::ApplyImpulse(const KVector2& impulse, const KVector2& contactVe
 	angularVelocity += m_invI * KVector2::Cross(contactVector, impulse);
 }
 
-void KRigidbody::SetStatic(void)
+void KRigidbody::SetStatic()
 {
 	m_I = 0.0f;
 	m_invI = 0.0f;

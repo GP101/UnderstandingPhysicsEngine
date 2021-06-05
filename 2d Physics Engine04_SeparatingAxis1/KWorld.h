@@ -37,7 +37,6 @@ public:
 
 public:
 	float m_dt;
-	uint32 m_iterations;
 	std::vector<std::shared_ptr<KRigidbody>>	m_bodies;
 };
 

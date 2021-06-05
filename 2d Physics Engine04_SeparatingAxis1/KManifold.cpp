@@ -34,12 +34,12 @@ KManifold::KManifold(std::shared_ptr<KRigidbody> a, std::shared_ptr<KRigidbody> 
 	sf = 0.0f;
 }
 
-void KManifold::Solve(void)
+void KManifold::Solve()
 {
 	g_collLookup[rigidbodyA->shape->GetType()][rigidbodyB->shape->GetType()](*this, rigidbodyA->shape, rigidbodyB->shape);
 }
 
-void KManifold::Initialize(void)
+void KManifold::Initialize()
 {
 	// Calculate average restitution
 	restitution = __min(rigidbodyA->restitution, rigidbodyB->restitution);

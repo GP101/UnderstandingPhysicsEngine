@@ -62,7 +62,6 @@ struct KRigidbody : public std::enable_shared_from_this<KRigidbody>
 
 	float32 m_linearDamping;
 	float32 m_angularDamping;
-	float32 m_gravityScale;
 };
 
 #endif // BODY_H

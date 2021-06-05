@@ -53,16 +53,11 @@ struct KRigidbody : public std::enable_shared_from_this<KRigidbody>
 	float m_mass;  // mass
 	float m_invMass; // inverse mass
 
-	float staticFriction;
-	float dynamicFriction;
-	float restitution;
-
 	// KShape interface
 	std::shared_ptr<KShape> shape;
 
 	float32 m_linearDamping;
 	float32 m_angularDamping;
-	float32 m_gravityScale;
 };
 
 #endif // BODY_H
