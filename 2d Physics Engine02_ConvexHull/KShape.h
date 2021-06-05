@@ -36,9 +36,6 @@ public:
 
 public:
 	std::shared_ptr<KRigidbody> body;
-	// For circle shape
-	float radius = 0.0f;
-	// For Polygon shape
 	KMatrix2 rotation; // Orientation matrix from model to world
 	KVector2 position;
 	// Store a color in RGB format

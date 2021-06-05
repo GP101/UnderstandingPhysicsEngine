@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Struct Name="KCircleShape" Collapsed="true">
+    <Position X="2.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAQAAAAAAAAAAAAAAAAkAAAAAAAAAAAA=</HashCode>
+      <FileName>KCircleShape.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="KPolygonShape" Collapsed="true">
+    <Position X="5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAABAAABQAAAAgAAAAAAAAAAAkAAEAAAEAAAAA=</HashCode>
+      <FileName>KPolygonShape.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="KRigidbody" Collapsed="true">
+    <Position X="1" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAACAIBAAAAAAAAgAAAIAAAAABAA=</HashCode>
+      <FileName>KRigidbody.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="dummyShape" />
+    </ShowAsAssociation>
+  </Struct>
+  <Struct Name="KWorld" Collapsed="true">
+    <Position X="1" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEIAoAgAAAAAgAAAAgCAAAAAAAAAAAEAIAAAAABAAAA=</HashCode>
+      <FileName>KWorld.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_dummyBodies" />
+    </ShowAsAssociation>
+  </Struct>
+  <Struct Name="KShape" Collapsed="true">
+    <Position X="3.75" Y="1.75" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="KShape::Type">
+        <TypeIdentifier>
+          <NewMemberFileName>KShape.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAIAAAACAAAAQAQAACAIAAAAQAAAgkIAQABAAAAAAA=</HashCode>
+      <FileName>KShape.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="dummybody" />
+    </ShowAsAssociation>
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

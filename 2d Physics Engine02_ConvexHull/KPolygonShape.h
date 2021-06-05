@@ -12,8 +12,7 @@ struct KPolygonShape : public KShape
 	bool IsValid() const;
 	void SetRotation(float radians);
 	KShape::Type GetType() const;
-	// Half width and half height
-	void SetBox(float hw, float hh);
+	void SetBox(float halfWidth, float halfHeight);
 	void Set(KVector2* vertices, uint32 count);
 	void FindConvexHull(KVector2 points[], int n, std::vector<KVector2>& convexHullPoints);
 

@@ -12,6 +12,18 @@ typedef float			float32;
 const float				PI = 3.141592741f;
 const float				EPSILON = 0.0001f;
 
+#ifndef constructor
+#define constructor
+#endif
+
+#ifndef destructor
+#define destructor
+#endif
+
+#ifndef VIRTUAL
+#define VIRTUAL
+#endif
+
 inline bool IsEqual(float a, float b)
 {
 	return std::abs(a - b) <= EPSILON;

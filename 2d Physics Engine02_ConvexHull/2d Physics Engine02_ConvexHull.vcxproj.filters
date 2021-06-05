@@ -39,9 +39,6 @@
     <ClInclude Include="KRigidbody.h">
       <Filter>Physics</Filter>
     </ClInclude>
-    <ClInclude Include="KScreenCoordinate.h">
-      <Filter>Physics</Filter>
-    </ClInclude>
     <ClInclude Include="KShape.h">
       <Filter>Physics</Filter>
     </ClInclude>
@@ -49,6 +46,7 @@
       <Filter>Physics</Filter>
     </ClInclude>
     <ClInclude Include="KShapeUtil.h" />
+    <ClInclude Include="KScreenCoordinate.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="LinearAlgebra.rc" />

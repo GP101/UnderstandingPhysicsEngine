@@ -13,6 +13,8 @@ struct KCircleShape : public KShape
 	void Initialize();
 	void SetRotation(float radians);
 	KShape::Type GetType() const;
+public:
+	float radius = 0.0f;
 };
 
 #endif // _KCIRCLESHAPE_H_
