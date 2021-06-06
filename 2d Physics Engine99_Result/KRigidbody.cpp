@@ -38,11 +38,6 @@ KRigidbody::KRigidbody(std::shared_ptr<KShape> shape_, float x, float y)
 	m_angularDamping = 0.1f;
 }
 
-void KRigidbody::ApplyForce(const KVector2& f)
-{
-	force += f;
-}
-
 void KRigidbody::ApplyImpulse(const KVector2& impulse, const KVector2& contactVector)
 {
 	velocity += m_invMass * impulse;
@@ -65,7 +60,6 @@ bool KRigidbody::IsStatic() const
 void KRigidbody::SetRotation(float radians)
 {
 	rotation = radians;
-	//shape->SetRotation(radians);
 }
 
 void KRigidbody::BodyToShape()

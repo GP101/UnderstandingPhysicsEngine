@@ -42,7 +42,6 @@ void IntegrateVelocity(std::shared_ptr<KRigidbody> b, float dt)
 
 	b->position += b->velocity * dt;
 	b->rotation += b->angularVelocity * dt;
-	//b->BodyToShape();
 }
 
 /*static*/ KWorld& KWorld::Singleton()

@@ -14,8 +14,6 @@ void KCircleShape::SetRotation(float radians)
 {
 }
 
-
-
 KShape::Type KCircleShape::GetType() const
 {
 	return Type::eCircle;

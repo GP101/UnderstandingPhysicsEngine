@@ -21,6 +21,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Box2D_Lite_WithoutJoints", 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Box2D_Lite", "Box2D_Lite_Wrapper\build\Box2DWrapper.vcxproj", "{47F79F6B-9565-40CB-BC63-ED03913C51A5}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2d Physics Engine03_Impulse linear momentum", "2d Physics Engine03_Impulse linear momentum\2d Physics Engine03_Impulse linear momentum.vcxproj", "{5690BA43-7585-45A7-BC85-3010D9E5F578}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2d Physics Engine03_Impulse torque", "2d Physics Engine03_Impulse torque\2d Physics Engine03_Impulse torque.vcxproj", "{959582E7-52B4-4CBB-AF46-03A3B5BFEB19}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -63,6 +67,14 @@ Global
 		{47F79F6B-9565-40CB-BC63-ED03913C51A5}.Debug|x86.Build.0 = Debug|Win32
 		{47F79F6B-9565-40CB-BC63-ED03913C51A5}.Release|x86.ActiveCfg = Release|Win32
 		{47F79F6B-9565-40CB-BC63-ED03913C51A5}.Release|x86.Build.0 = Release|Win32
+		{5690BA43-7585-45A7-BC85-3010D9E5F578}.Debug|x86.ActiveCfg = Debug|Win32
+		{5690BA43-7585-45A7-BC85-3010D9E5F578}.Debug|x86.Build.0 = Debug|Win32
+		{5690BA43-7585-45A7-BC85-3010D9E5F578}.Release|x86.ActiveCfg = Release|Win32
+		{5690BA43-7585-45A7-BC85-3010D9E5F578}.Release|x86.Build.0 = Release|Win32
+		{959582E7-52B4-4CBB-AF46-03A3B5BFEB19}.Debug|x86.ActiveCfg = Debug|Win32
+		{959582E7-52B4-4CBB-AF46-03A3B5BFEB19}.Debug|x86.Build.0 = Debug|Win32
+		{959582E7-52B4-4CBB-AF46-03A3B5BFEB19}.Release|x86.ActiveCfg = Release|Win32
+		{959582E7-52B4-4CBB-AF46-03A3B5BFEB19}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
