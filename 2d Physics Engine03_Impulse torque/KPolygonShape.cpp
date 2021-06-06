@@ -169,24 +169,3 @@ void KPolygonShape::FindConvexHull(KVector2 points[], int n, std::vector<KVector
 		index -= 1;
 	}
 }
-
-// The extreme point along a direction within a polygon
-KVector2 KPolygonShape::GetSupportPoint(const KVector2& dir)
-{
-	float bestProjection = -FLT_MAX;
-	KVector2 bestVertex;
-
-	for (uint32 i = 0; i < m_vertices.size(); ++i)
-	{
-		KVector2 v = m_vertices[i];
-		float projection = KVector2::Dot(v, dir);
-
-		if (projection > bestProjection)
-		{
-			bestVertex = v;
-			bestProjection = projection;
-		}
-	}
-
-	return bestVertex;
-}

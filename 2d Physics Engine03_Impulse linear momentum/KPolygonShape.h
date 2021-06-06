@@ -16,8 +16,6 @@ struct KPolygonShape : public KShape
 	void SetBox(float halfWidth, float halfHeight);
 	void Set(KVector2* vertices, uint32 count);
 	void FindConvexHull(KVector2 points[], int n, std::vector<KVector2>& convexHullPoints);
-	// The extreme point along a direction within a polygon
-	KVector2 GetSupportPoint(const KVector2& dir);
 
 	std::vector<KVector2> m_vertices;
 	std::vector<KVector2> m_normals;
