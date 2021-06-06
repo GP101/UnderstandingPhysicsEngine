@@ -7,8 +7,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2d Physics Engine01_PointCl
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2d Physics Engine02_ConvexHull", "2d Physics Engine02_ConvexHull\2d Physics Engine02_ConvexHull.vcxproj", "{3CA5D791-019F-4A21-98CE-ACA54413E95B}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2d Physics Engine03_Impulse", "2d Physics Engine03_Impulse\2d Physics Engine03_Impulse.vcxproj", "{5690BA43-7585-45A7-BC85-3010D9E5F578}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2d Physics Engine04_SeparatingAxis1", "2d Physics Engine04_SeparatingAxis1\2d Physics Engine04_SeparatingAxis1.vcxproj", "{BF7B5F51-5A19-404B-A8B1-08888B2A7070}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2d Physics Engine04_SeparatingAxis2", "2d Physics Engine04_SeparatingAxis2\2d Physics Engine04_SeparatingAxis2.vcxproj", "{43723C13-C07C-417C-A3D9-0AEE060AE4A0}"
@@ -37,10 +35,6 @@ Global
 		{3CA5D791-019F-4A21-98CE-ACA54413E95B}.Debug|x86.Build.0 = Debug|Win32
 		{3CA5D791-019F-4A21-98CE-ACA54413E95B}.Release|x86.ActiveCfg = Release|Win32
 		{3CA5D791-019F-4A21-98CE-ACA54413E95B}.Release|x86.Build.0 = Release|Win32
-		{5690BA43-7585-45A7-BC85-3010D9E5F578}.Debug|x86.ActiveCfg = Debug|Win32
-		{5690BA43-7585-45A7-BC85-3010D9E5F578}.Debug|x86.Build.0 = Debug|Win32
-		{5690BA43-7585-45A7-BC85-3010D9E5F578}.Release|x86.ActiveCfg = Release|Win32
-		{5690BA43-7585-45A7-BC85-3010D9E5F578}.Release|x86.Build.0 = Release|Win32
 		{BF7B5F51-5A19-404B-A8B1-08888B2A7070}.Debug|x86.ActiveCfg = Debug|Win32
 		{BF7B5F51-5A19-404B-A8B1-08888B2A7070}.Debug|x86.Build.0 = Debug|Win32
 		{BF7B5F51-5A19-404B-A8B1-08888B2A7070}.Release|x86.ActiveCfg = Release|Win32
