@@ -43,54 +43,6 @@ void KManifold::Initialize()
 {
 }
 
-void KManifold::ApplyImpulse()
-{
-	// Early out and positional correct if both objects have infinite mass
-	if (IsEqual(rigidbodyA->m_invMass + rigidbodyB->m_invMass, 0))
-	{
-		InfiniteMassCorrection();
-		return;
-	}
-
-	for (uint32 i = 0; i < contact_count; ++i)
-	{
-		// Calculate radii from COM to contact
-		KVector2 ra = contacts[i] - rigidbodyA->position;
-		KVector2 rb = contacts[i] - rigidbodyB->position;
-
-		// Relative velocity
-		KVector2 rv = rigidbodyB->velocity + KVector2::Cross(rigidbodyB->angularVelocity, rb) -
-			rigidbodyA->velocity - KVector2::Cross(rigidbodyA->angularVelocity, ra);
-
-		// Relative velocity along the normal
-		float contactVel = KVector2::Dot(rv, normal);
-
-		// Do not resolve if velocities are separating
-		if (contactVel > 0)
-			return;
-
-		float raCrossN = KVector2::Cross(ra, normal);
-		float rbCrossN = KVector2::Cross(rb, normal);
-		float invMassSum = rigidbodyA->m_invMass + rigidbodyB->m_invMass
-			+ Square(raCrossN) * rigidbodyA->m_invI + Square(rbCrossN) * rigidbodyB->m_invI;
-
-		// Calculate impulse scalar
-		float j = -(1.0f + restitution) * contactVel;
-		j /= invMassSum;
-		j /= (float)contact_count;
-
-		// Apply impulse
-		KVector2 impulse = normal * j;
-		rigidbodyA->ApplyImpulse(-impulse, ra);
-		rigidbodyB->ApplyImpulse(impulse, rb);
-
-		// Friction impulse
-		if(KWorld::enableFriction == true )
-		{
-		}/**/
-	}
-}
-
 void KManifold::PositionalCorrection()
 {
 	const float k_slop = 0.05f; // Penetration allowance

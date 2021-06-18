@@ -84,11 +84,6 @@ void KWorld::Step()
 	for (uint32 i = 0; i < m_contacts.size(); ++i)
 		m_contacts[i].Initialize();
 
-	// Solve collisions
-	for (uint32 j = 0; j < m_iterations; ++j)
-		for (uint32 i = 0; i < m_contacts.size(); ++i)
-			m_contacts[i].ApplyImpulse();
-
 	// Integrate velocities
 	for (uint32 i = 0; i < m_bodies.size(); ++i)
 		IntegrateVelocity(m_bodies[i], m_dt);
