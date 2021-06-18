@@ -157,9 +157,6 @@ std::shared_ptr<KShape> KWorld::CreatePolygon(KVector2* vertices, uint32 numVert
 		std::shared_ptr<KRigidbody> body = Add(polygon, 0, 0);
 		body->shape->ComputeMass(1.0f);
 		body->SetRotation(0);
-		body->restitution = 0.2f;
-		body->dynamicFriction = 0.2f;
-		body->staticFriction = 0.4f;
 		body->position = KVector2(x, y);
 		body->BodyToShape();
 		if (isStatic)

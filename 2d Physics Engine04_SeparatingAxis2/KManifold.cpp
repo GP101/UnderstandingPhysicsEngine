@@ -41,28 +41,6 @@ void KManifold::Solve()
 
 void KManifold::Initialize()
 {
-	// Calculate average restitution
-	restitution = __min(rigidbodyA->restitution, rigidbodyB->restitution);
-
-	// Calculate static and dynamic friction
-	sf = std::sqrt(rigidbodyA->staticFriction * rigidbodyB->staticFriction);
-	df = std::sqrt(rigidbodyA->dynamicFriction * rigidbodyB->dynamicFriction);
-
-	for (uint32 i = 0; i < contact_count; ++i)
-	{
-		// Calculate radii from COM to contact
-		KVector2 ra = contacts[i] - rigidbodyA->position;
-		KVector2 rb = contacts[i] - rigidbodyB->position;
-
-		KVector2 rv = rigidbodyB->velocity + KVector2::Cross(rigidbodyB->angularVelocity, rb) -
-			rigidbodyA->velocity - KVector2::Cross(rigidbodyA->angularVelocity, ra);
-
-		// Determine if we should perform a resting collision or not
-		// The idea is if the only thing moving this object is gravity,
-		// then the collision should be performed without any restitution
-		if (rv.LengthSquared() < (KWorld::dt * KWorld::gravity).LengthSquared() + EPSILON)
-			restitution = 0.0f;
-	}
 }
 
 void KManifold::ApplyImpulse()
@@ -116,7 +94,7 @@ void KManifold::ApplyImpulse()
 void KManifold::PositionalCorrection()
 {
 	const float k_slop = 0.05f; // Penetration allowance
-	const float percent = 0.4f; // Penetration percentage to correct
+	const float percent = 0.4f; // Penetration percentage to correct // qff
 	KVector2 correction = (__max(penetration - k_slop, 0.0f) / (rigidbodyA->m_invMass + rigidbodyB->m_invMass)) * normal * percent;
 	rigidbodyA->position -= correction * rigidbodyA->m_invMass;
 	rigidbodyB->position += correction * rigidbodyB->m_invMass;
