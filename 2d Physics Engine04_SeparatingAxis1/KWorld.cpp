@@ -46,12 +46,12 @@ void IntegrateVelocity(std::shared_ptr<KRigidbody> b, float dt)
 
 /*static*/ KWorld& KWorld::Singleton()
 {
-	static KWorld instance(KWorld::dt, 10);
+	static KWorld instance(KWorld::dt);
 	return instance;
 }
 
 // constructor
-KWorld::KWorld(float dt, uint32 iterations) 
+KWorld::KWorld(float dt) 
 	: m_dt(dt)
 {
 }

@@ -23,7 +23,7 @@ public:
 	static const bool		drawPenetration = true;
 
 public:
-	/*constructor*/			KWorld(float dt, uint32 iterations);
+	/*constructor*/			KWorld(float dt);
 	void					Step();
 	std::shared_ptr<KRigidbody>
 							CreateRigidbody(std::shared_ptr<KShape> shape, float x, float y);
@@ -37,7 +37,6 @@ public:
 
 public:
 	float m_dt;
-	uint32 m_iterations;
 	std::vector<std::shared_ptr<KRigidbody>>	m_bodies;
 	std::vector<KManifold>	m_contacts;
 };
