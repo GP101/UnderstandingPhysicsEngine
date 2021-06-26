@@ -29,9 +29,6 @@ KManifold::KManifold(std::shared_ptr<KRigidbody> a, std::shared_ptr<KRigidbody> 
 {
 	penetration = 0.0f;
 	contact_count = 0;
-	restitution = 0.0f;
-	df = 0.0f;
-	sf = 0.0f;
 }
 
 void KManifold::Solve()

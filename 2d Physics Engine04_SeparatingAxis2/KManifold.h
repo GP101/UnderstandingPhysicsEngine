@@ -41,9 +41,6 @@ struct KManifold// : public std::enable_shared_from_this<KManifold>
 	KVector2 normal;          // From A to B
 	KVector2 contacts[2];     // Points of contact during collision
 	uint32 contact_count;	// Number of contacts that occurred during collision
-	float restitution;		// Mixed restitution
-	float df;              // Mixed dynamic friction
-	float sf;              // Mixed static friction
 };
 
 #endif // MANIFOLD_H
