@@ -56,7 +56,7 @@ KWorld::KWorld(float dt)
 {
 }
 
-void KWorld::Step()
+void KWorld::GenerateCollisionInfo()
 {
 	// Generate new collision info
 	m_contacts.clear();
@@ -69,12 +69,18 @@ void KWorld::Step()
 			std::shared_ptr<KRigidbody> B = m_bodies[j];
 			if (A->m_invMass == 0 && B->m_invMass == 0)
 				continue;
-			KManifold m(A,B);
+			KManifold m(A, B);
 			m.Solve();
 			if (m.contact_count)
 				m_contacts.emplace_back(m);
 		}
 	}
+}
+
+void KWorld::Step()
+{
+	// Generate new collision info
+	GenerateCollisionInfo();
 
 	// Integrate forces
 	for (uint32 i = 0; i < m_bodies.size(); ++i)

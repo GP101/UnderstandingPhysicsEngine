@@ -145,8 +145,6 @@ void KManifold::PositionalCorrection()
 	KVector2 correction = (__max(penetration - k_slop, 0.0f) / (rigidbodyA->m_invMass + rigidbodyB->m_invMass)) * normal * percent;
 	rigidbodyA->position -= correction * rigidbodyA->m_invMass;
 	rigidbodyB->position += correction * rigidbodyB->m_invMass;
-	//rigidbodyA->BodyToShape();
-	//rigidbodyB->BodyToShape();
 }
 
 void KManifold::InfiniteMassCorrection()

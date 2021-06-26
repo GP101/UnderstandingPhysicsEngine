@@ -48,4 +48,5 @@ namespace KVectorUtil
 	/// <param name="c"> thrid point </param>
 	/// <returns> 0: colinear, 1: Clockwise, 2: Counter-Clockwise </returns>
 	int GetDirection(const KVector2& a, const KVector2& b, const KVector2& c);
+	KVector2 GetCenterOfMass(std::vector<KVector2> vertices);
 }

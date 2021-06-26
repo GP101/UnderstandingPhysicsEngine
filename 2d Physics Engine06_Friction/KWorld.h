@@ -24,6 +24,7 @@ public:
 
 public:
 	/*constructor*/			KWorld(float dt, uint32 iterations);
+	void					GenerateCollisionInfo();
 	void					Step();
 	std::shared_ptr<KRigidbody>
 							CreateRigidbody(std::shared_ptr<KShape> shape, float x, float y);

@@ -20,10 +20,11 @@ public:
 	static bool				frameStepping;
 	static bool				canStep;
 	static const bool		enableFriction = true; // 20210428_jintaeks
-	static const bool		drawPenetration = true;
+	static const bool		drawPenetration = false;
 
 public:
 	/*constructor*/			KWorld(float dt);
+	void					GenerateCollisionInfo();
 	void					Step();
 	std::shared_ptr<KRigidbody>
 							CreateRigidbody(std::shared_ptr<KShape> shape, float x, float y);

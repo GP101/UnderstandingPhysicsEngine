@@ -403,3 +403,29 @@ int KVectorUtil::GetDirection(const KVector2& a, const KVector2& b, const KVecto
 
 	return 2; //counter-clockwise direction
 }
+
+KVector2 KVectorUtil::GetCenterOfMass(std::vector<KVector2> m_vertices)
+{
+	KVector2 c(0.0f, 0.0f);
+	float area = 0.0f;
+	const float k_inv3 = 1.0f / 3.0f;
+
+	for (uint32 i1 = 0; i1 < m_vertices.size(); ++i1)
+	{
+		// Triangle vertices, third vertex implied as (0, 0)
+		KVector2 p1(m_vertices[i1]);
+		uint32 i2 = i1 + 1 < m_vertices.size() ? i1 + 1 : 0;
+		KVector2 p2(m_vertices[i2]);
+
+		float D = KVector2::Cross(p1, p2);
+		float triangleArea = 0.5f * D;
+
+		area += triangleArea;
+
+		// Use area to weight the centroid average, not just vertex position
+		c += triangleArea * k_inv3 * (p1 + p2);
+	}
+
+	c *= 1.0f / area;
+	return c;
+}

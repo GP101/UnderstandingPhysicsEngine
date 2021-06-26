@@ -56,7 +56,7 @@ KWorld::KWorld(float dt, uint32 iterations)
 {
 }
 
-void KWorld::Step()
+void KWorld::GenerateCollisionInfo()
 {
 	// Generate new collision info
 	m_contacts.clear();
@@ -75,6 +75,12 @@ void KWorld::Step()
 				m_contacts.emplace_back(m);
 		}
 	}
+}
+
+void KWorld::Step()
+{
+	// Generate new collision info
+	GenerateCollisionInfo();
 
 	// Integrate forces
 	for (uint32 i = 0; i < m_bodies.size(); ++i)
