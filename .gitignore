@@ -42,3 +42,5 @@
 /2d Physics Engine03_Impulse linear momentum/Release
 /2d Physics Engine03_Impulse linear momentum/.vs
 /2d Physics Engine03_Impulse torque/.vs
+/Box2D_Lite_Wrapper/bin/Box2D_Lite.exe
+/Box2D_Lite_WithoutJoints/bin/Box2D_Lite_WithoutJoints.exe
