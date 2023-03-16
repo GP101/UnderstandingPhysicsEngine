@@ -30,6 +30,9 @@ public:
 
 public:
 	std::vector<std::shared_ptr<KRigidbody>>	m_bodies;
+#ifdef _UNDEFINED
+	KRigidbody* _bodies;
+#endif
 };
 
 #define _KWorld		KWorld::Singleton()

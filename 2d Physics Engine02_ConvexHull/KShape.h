@@ -35,6 +35,9 @@ public:
 	void SetPosition(const KVector2& pos_) { position = pos_; }
 
 public:
+#ifdef _UNDEFINED
+	KRigidbody* _body;
+#endif
 	std::shared_ptr<KRigidbody> body;
 	KMatrix2 rotation; // Orientation matrix from model to world
 	KVector2 position;

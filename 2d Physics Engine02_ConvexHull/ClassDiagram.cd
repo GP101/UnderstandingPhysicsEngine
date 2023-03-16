@@ -17,21 +17,21 @@
   <Struct Name="KRigidbody">
     <Position X="3.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAACAAAAAAACAIBAAAAAAAAgAAAIAAAAABAA=</HashCode>
+      <HashCode>AAAAAgAAAACAAAAAAACAIBAAAAAAAAgAAAAAAAAABAA=</HashCode>
       <FileName>KRigidbody.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="dummyShape" />
+      <Field Name="_shape" />
     </ShowAsAssociation>
   </Struct>
   <Struct Name="KWorld">
     <Position X="0.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AEIAoAgAAAAAgAAAAgCAAAAAAAAAAAEAIAAAAABAAAA=</HashCode>
+      <HashCode>AEIAoAgAAAAAoAAAAACAAAAAAAAAAAEAIAAAAABAAAA=</HashCode>
       <FileName>KWorld.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="m_dummyBodies" />
+      <Field Name="_bodies" />
     </ShowAsAssociation>
   </Struct>
   <Struct Name="KShape">
@@ -44,11 +44,11 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAIAAAAAAAAAQAQAACAIAAAAQAAAgkIAQABAAAAAAA=</HashCode>
+      <HashCode>AAAIAAAAAAAAAQAAAACAIAAAAQAAAgkIAQABAAAAEAA=</HashCode>
       <FileName>KShape.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="dummybody" />
+      <Field Name="_body" />
     </ShowAsAssociation>
   </Struct>
   <Font Name="Segoe UI" Size="9" />

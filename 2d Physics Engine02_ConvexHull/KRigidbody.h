@@ -39,6 +39,9 @@ struct KRigidbody : public std::enable_shared_from_this<KRigidbody>
 
 	// KShape interface
 	std::shared_ptr<KShape> shape;
+#ifdef _UNDEFINED
+	KShape* _shape;
+#endif
 };
 
 #endif // BODY_H
